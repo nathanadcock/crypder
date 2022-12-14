@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  View,
+  Text,
+} from 'react-native';
 import MapView from 'react-native-maps';
-import { Text, View } from '../components/Themed';
 import { ApplicationContext } from '../contexts/ApplicationContext';
 
 export default function HomeScreen() {

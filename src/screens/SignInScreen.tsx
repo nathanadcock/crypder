@@ -1,9 +1,15 @@
-import { Envelope, LockKey } from 'phosphor-react-native';
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
-import StyledTextInput from '../components/StyledTextInput';
-import { Text, View } from '../components/Themed';
+import {
+  Pressable,
+  StyleSheet,
+  View,
+  Text,
+} from 'react-native';
+import { Envelope, LockKey } from 'phosphor-react-native';
 import { ApplicationContext } from '../contexts/ApplicationContext';
+import StyledTextInput from '../components/atoms/StyledTextInput';
+import PageCanvas from '../components/atoms/PageContent';
+import { ThemedAccentText, ThemedMainText, ThemedSubText } from '../components/atoms/Themed';
 
 export default function SignInScreen() {
   const { setActiveUser } = useContext(ApplicationContext);
@@ -16,86 +22,74 @@ export default function SignInScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Sign in</Text>
-        <Text style={styles.headerText}>Please sign in to continue.</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <StyledTextInput
-          label="Email"
-          icon={<Envelope />}
-          style={{ marginBottom: 16 }}
-        />
-        <StyledTextInput
-          label="Password"
-          icon={<LockKey />}
-          style={{ marginBottom: 16 }}
-          secureTextEntry
-        />
-        <Pressable
-          style={styles.loginButton}
-          onPress={signInHandler}
-        >
-          <Text style={styles.loginButtonText}>Sign in</Text>
-        </Pressable>
-      </View>
-      <View style={styles.footerContainer}>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.footerQuestionText}>Forgot your password?</Text>
-          <Text style={styles.footerActionText}>Reset password</Text>
+    <PageCanvas>
+      <View style={styles.contentWrapper}>
+        <View style={styles.headerWrapper}>
+          <ThemedMainText style={styles.headerTitle}>
+            Sign in
+          </ThemedMainText>
+          <ThemedSubText style={styles.headerTitleSub}>
+            Please sign in to continue.
+          </ThemedSubText>
         </View>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.footerQuestionText}>Don&apos;t have an account?</Text>
-          <Text style={styles.footerActionText}>Sign up</Text>
+        <View style={styles.inputsWrapper}>
+          <StyledTextInput
+            label="Email"
+            icon={<Envelope />}
+            style={{ marginBottom: 16 }}
+          />
+          <StyledTextInput
+            label="Password"
+            icon={<LockKey />}
+            style={{ marginBottom: 16 }}
+            secureTextEntry
+          />
+          <Pressable style={styles.loginButton} onPress={signInHandler}>
+            <Text style={styles.loginButtonText}>Sign in</Text>
+          </Pressable>
+        </View>
+        <View style={styles.footerWrapper}>
+          <View style={{ flexDirection: 'row' }}>
+            <ThemedSubText style={styles.footerQuestionText}>
+              Forgot your password?
+            </ThemedSubText>
+            <ThemedAccentText style={styles.footerActionText}>
+              Reset password
+            </ThemedAccentText>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <ThemedSubText style={styles.footerQuestionText}>
+              Don&apos;t have an account?
+            </ThemedSubText>
+            <ThemedAccentText style={styles.footerActionText}>
+              Sign up
+            </ThemedAccentText>
+          </View>
         </View>
       </View>
-    </View>
+    </PageCanvas>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentWrapper: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
   },
-  headerContainer: {
-    justifyContent: 'center',
+  headerWrapper: {
+    alignItems: 'center',
     marginBottom: 32,
   },
   headerTitle: {
     fontSize: 48,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
-  headerText: {
+  headerTitleSub: {
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#666666',
   },
-  footerContainer: {
-    alignItems: 'center',
-    marginTop: 32,
-  },
-  footerQuestionText: {
-    marginBottom: 12,
-    marginRight: 4,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#666666',
-  },
-  footerActionText: {
-    marginBottom: 12,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#DD814D',
-  },
-  inputContainer: {
+  inputsWrapper: {
     maxWidth: 360,
     width: '88%',
   },
@@ -112,5 +106,20 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  footerWrapper: {
+    alignItems: 'center',
+    marginTop: 32,
+  },
+  footerQuestionText: {
+    marginBottom: 12,
+    marginRight: 4,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  footerActionText: {
+    marginBottom: 12,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });

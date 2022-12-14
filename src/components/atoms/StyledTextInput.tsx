@@ -57,7 +57,13 @@ export default function StyledTextInput({
   });
 
   return (
-    <animated.View style={{ ...containerStyle, ...styles.textInputContainer, ...style }}>
+    <animated.View
+      style={{
+        ...containerStyle,
+        ...styles.textInputContainer,
+        ...style,
+      }}
+    >
       <animated.Text
         style={{
           ...labelStyle,
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: 50,
     borderRadius: 12,
-    backgroundColor: '#EFEFEF',
+    backgroundColor: '#EEEEEE',
   },
   textInputIconWrapper: {
     position: 'absolute',

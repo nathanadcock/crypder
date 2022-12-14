@@ -6,9 +6,6 @@ import React, {
   useState,
 } from 'react';
 
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
-
 interface ThemeStyleProperties {
   [property: string]: string;
 }
@@ -20,32 +17,16 @@ interface ThemeMap {
 
 const colors: ThemeMap = {
   light: {
-    text: '#000',
-    background: '#FFF',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
-
-    textInputBackgroundColor: '#E4E4E4',
-    textInputPlaceholderColor: '#666',
-    textInputTextColor: '#000',
-
-    buttonBackgroundColor: '#000',
-    buttonTextColor: '#fff',
+    mainTextColor: '#000000',
+    subTextColor: '#666666',
+    accentTextColor: '#DD814D',
+    canvasColor: '#FFFFFF',
   },
   dark: {
-    text: '#FFF',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-
-    textInputBackgroundColor: '#222',
-    textInputPlaceholderColor: '#CCC',
-    textInputTextColor: '#FFF',
-
-    buttonBackgroundColor: '#FFF',
-    buttonTextColor: '#000',
+    mainTextColor: '#FFFFFF',
+    subTextColor: '#AAAAAA',
+    accentTextColor: '#6F4DDD',
+    canvasColor: '#000000',
   },
 };
 
