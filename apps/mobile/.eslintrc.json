@@ -1,5 +1,16 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react"],
+  "extends": [
+    "plugin:@nrwl/nx/react",
+    "../../.eslintrc.json",
+    "airbnb",
+    "plugin:react/recommended"
+  ],
   "ignorePatterns": ["!**/*", ".expo", "node_modules", "web-build"],
   "overrides": [
     {
@@ -16,5 +27,24 @@
       "files": ["*.js", "*.jsx"],
       "rules": {}
     }
-  ]
+  ],
+  "rules": {
+    "import/extensions": ["error", { "extensions": [".ts", ".tsx"] }],
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": ["error", { "variables": false }],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/require-default-props": "off"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  }
 }
