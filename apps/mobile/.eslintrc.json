@@ -35,7 +35,8 @@
     "no-unused-vars": "off",
     "no-use-before-define": ["error", { "variables": false }],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-shadow": "off"
   },
   "settings": {
     "import/parsers": {

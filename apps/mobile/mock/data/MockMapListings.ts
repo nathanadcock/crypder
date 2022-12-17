@@ -1,4 +1,4 @@
-import { ListingMap } from '../../src/app/types/Listings';
+import { ListingMap, ExchangeType } from '../../src/app/types/Listings';
 
 const mockMapListings: ListingMap = {
   testId_1: {
@@ -6,6 +6,7 @@ const mockMapListings: ListingMap = {
     conversionRate: 13934.20,
     maxCashValue: 2500,
     minCashValue: 500,
+    exchangeType: ExchangeType.BUYING_CRYPTO,
     coordinate: {
       latitude: 37.78825,
       longitude: -122.4324,
@@ -22,6 +23,7 @@ const mockMapListings: ListingMap = {
     conversionRate: 14230.43,
     maxCashValue: 500,
     minCashValue: 100,
+    exchangeType: ExchangeType.SELLING_CRYPTO,
     coordinate: {
       latitude: 37.78825,
       longitude: -122.4124,
@@ -38,6 +40,7 @@ const mockMapListings: ListingMap = {
     conversionRate: 12903.99,
     maxCashValue: 7500,
     minCashValue: 2500,
+    exchangeType: ExchangeType.SELLING_CRYPTO,
     coordinate: {
       latitude: 37.78325,
       longitude: -122.4224,

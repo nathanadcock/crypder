@@ -8,6 +8,7 @@ import {
 import {
   ArrowFatLineDown,
   ArrowFatLineUp,
+  ArrowsLeftRight,
   ArrowsOutLineHorizontal,
   Bookmark,
   ChatCircleText,
@@ -16,7 +17,7 @@ import {
   UserCircle,
   X,
 } from 'phosphor-react-native';
-import { Listing } from '../../types/Listings';
+import { Listing, ExchangeType } from '../../types/Listings';
 
 export default function MapListingCard({
   listing: externalListing,
@@ -34,20 +35,52 @@ export default function MapListingCard({
 
   if (!listing) return null;
 
+  const listingTransactionPillColorStyle = (
+    listing.exchangeType === ExchangeType.BUYING_CRYPTO
+      ? styles.listingBuyPillColors
+      : styles.listingSellPillColors
+  );
+
   return (
     <View style={styles.listingContainer}>
       <View style={styles.listingHeader}>
-        {/* AUTHOR PILL */}
-        <View style={styles.listingAuthorContainer}>
-          <View style={styles.rowContainer}>
-            <UserCircle
-              size={styles.listingAuthorText.fontSize + 4}
-              color={styles.listingAuthorText.color}
-              style={{ marginRight: 4 }}
-            />
-            <Text style={styles.listingAuthorText}>
-              {listing.author.username}
-            </Text>
+        <View style={styles.rowContainer}>
+          {/* AUTHOR PILL */}
+          <View
+            style={[
+              styles.listingFancyPill,
+              styles.listingAuthorPillColors,
+              { marginRight: 6 },
+            ]}
+          >
+            <View style={styles.rowContainer}>
+              <UserCircle
+                size={styles.listingFancyPillText.fontSize + 4}
+                color={styles.listingFancyPillText.color}
+                style={{ marginRight: 4 }}
+              />
+              <Text style={styles.listingFancyPillText}>
+                {listing.author.username}
+              </Text>
+            </View>
+          </View>
+          {/* TRANSACTION TYPE PILL */}
+          <View
+            style={[
+              styles.listingFancyPill,
+              listingTransactionPillColorStyle,
+            ]}
+          >
+            <View style={styles.rowContainer}>
+              <ArrowsLeftRight
+                size={styles.listingFancyPillText.fontSize + 4}
+                color={styles.listingFancyPillText.color}
+                style={{ marginRight: 4 }}
+              />
+              <Text style={styles.listingFancyPillText}>
+                {listing.exchangeType}
+              </Text>
+            </View>
           </View>
         </View>
         {/* CLOSE BUTTON */}
@@ -161,17 +194,29 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#EEEEEE',
   },
-  listingAuthorContainer: {
+  listingFancyPill: {
     borderRadius: 100,
     borderWidth: 3,
     marginBottom: 4,
     paddingVertical: 2,
     paddingLeft: 4,
-    paddingRight: 12,
-    backgroundColor: '#2B32AD',
+    paddingRight: 8,
+    backgroundColor: '#444444',
+    borderColor: '#888888',
+  },
+  listingAuthorPillColors: {
+    backgroundColor: '#A3297E',
+    borderColor: '#D65CB1',
+  },
+  listingBuyPillColors: {
+    backgroundColor: '#292FA3',
     borderColor: '#5C62D6',
   },
-  listingAuthorText: {
+  listingSellPillColors: {
+    backgroundColor: '#A37229',
+    borderColor: '#D6A55C',
+  },
+  listingFancyPillText: {
     fontSize: 12,
     color: '#FFFFFF',
   },

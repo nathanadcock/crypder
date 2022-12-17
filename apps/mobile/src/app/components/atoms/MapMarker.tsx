@@ -1,20 +1,31 @@
+import React, { ReactElement, useMemo } from 'react';
 import { animated, useSpring } from '@react-spring/native';
 import { CurrencyBtc } from 'phosphor-react-native';
-import React, { ReactElement, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { ExchangeType } from '../../types/Listings';
 
 export default function MapMarker({
   active,
+  exchangeType,
 }: {
   active: boolean,
+  exchangeType: ExchangeType,
 }): ReactElement {
+  const markerPuckColorStyle = (
+    exchangeType === ExchangeType.BUYING_CRYPTO
+      ? styles.markerPuckBuy
+      : styles.markerPuckSell
+  );
+
   const markerWrapperStyle = useSpring({
     config: {
       mass: 0.15,
       tension: 300,
     },
     to: {
-      backgroundColor: active ? '#5c62d688' : '#5c62d600',
+      backgroundColor: active
+        ? `${markerPuckColorStyle.borderColor}88`
+        : `${markerPuckColorStyle.borderColor}00`,
     },
   });
 
@@ -22,7 +33,7 @@ export default function MapMarker({
   return useMemo(() => {
     return (
       <animated.View style={[styles.markerWrapper, markerWrapperStyle]}>
-        <animated.View style={[styles.markerPuck]}>
+        <animated.View style={[styles.markerPuck, markerPuckColorStyle]}>
           <CurrencyBtc size={16} color="#FFFFFF" />
         </animated.View>
       </animated.View>
@@ -47,7 +58,13 @@ const styles = StyleSheet.create({
     height: 28,
     borderRadius: 100,
     borderWidth: 3,
-    backgroundColor: '#2b32ad',
-    borderColor: '#5c62d6',
+  },
+  markerPuckBuy: {
+    backgroundColor: '#292FA3',
+    borderColor: '#5C62D6',
+  },
+  markerPuckSell: {
+    backgroundColor: '#A37229',
+    borderColor: '#D6A55C',
   },
 });

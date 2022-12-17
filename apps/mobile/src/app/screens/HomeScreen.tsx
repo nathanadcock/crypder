@@ -4,7 +4,6 @@ import React, {
 } from 'react';
 import {
   StyleSheet,
-  View,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { animated, useSpring } from '@react-spring/native';
@@ -62,7 +61,10 @@ export default function HomeScreen() {
             onPress={() => setActiveListingId(listingId)}
             tracksViewChanges
           >
-            <MapMarker active={listingId === activeListingId} />
+            <MapMarker
+              active={listingId === activeListingId}
+              exchangeType={listing.exchangeType}
+            />
           </Marker>
         ))}
       </MapView>
