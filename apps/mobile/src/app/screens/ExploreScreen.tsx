@@ -12,7 +12,7 @@ import mockMapListings from '../../../mock/data/MockMapListings';
 import { ListingMap } from '../types/Listings';
 import MapListingCard from '../components/molecules/MapListingCard';
 
-export default function HomeScreen() {
+export default function ExploreScreen() {
   const [listings, setListings] = useState<ListingMap>(mockMapListings);
   const [activeListingId, setActiveListingId] = useState<string|undefined>(undefined);
   const mapRef = useRef(null);

@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@expo/metro-config": "0.5.1",
+    "@react-navigation/bottom-tabs": "^6.5.2",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.6",
     "@react-spring/native": "^9.6.0",

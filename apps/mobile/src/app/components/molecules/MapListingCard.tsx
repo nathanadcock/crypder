@@ -152,10 +152,10 @@ export default function MapListingCard({
           </Text>
         </View>
         <View style={[styles.listingActionButton, { marginRight: 6 }]}>
-          <Bookmark size={28} />
+          <Bookmark size={28} color="#666666" />
         </View>
         <View style={styles.listingActionButton}>
-          <ChatCircleText size={28} />
+          <ChatCircleText size={28} color="#666666" />
         </View>
       </View>
     </View>
