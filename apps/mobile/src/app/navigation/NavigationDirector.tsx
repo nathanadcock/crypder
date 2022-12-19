@@ -7,6 +7,7 @@ import {
   Binoculars,
   Cardholder,
   GearSix,
+  Rows,
 } from 'phosphor-react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,6 +18,7 @@ import ExploreScreen from '../screens/ExploreScreen';
 import { ApplicationContext } from '../contexts/ApplicationContext';
 import DashboardScreen from '../screens/DashboardScreen';
 import PreferencesScreen from '../screens/PreferencesScreen';
+import ListingScreen from '../screens/ListingScreen';
 
 const RootStackNav = createNativeStackNavigator();
 const BottomTabNav = createBottomTabNavigator();
@@ -48,6 +50,16 @@ export function BottomTabNavigationDirector(): ReactElement {
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <Binoculars color={color} />
+          ),
+        }}
+      />
+      <BottomTabNav.Screen
+        name="Listings"
+        component={ListingScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Rows color={color} />
           ),
         }}
       />

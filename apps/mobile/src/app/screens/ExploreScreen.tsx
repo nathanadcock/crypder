@@ -77,6 +77,7 @@ export default function ExploreScreen() {
         <MapListingCard
           listing={activeListing}
           onClose={onCloseListingCardHandler}
+          mapMode
         />
       </animated.View>
     </>

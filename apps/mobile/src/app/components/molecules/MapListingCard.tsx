@@ -21,10 +21,12 @@ import { Listing, ExchangeType } from '../../types/Listings';
 
 export default function MapListingCard({
   listing: externalListing,
+  mapMode,
   onClose,
 }: {
   listing: Listing | undefined;
-  onClose: () => void;
+  mapMode: boolean;
+  onClose?: () => void;
 }): ReactElement | null {
   const [listing, setListing] = useState(externalListing);
 
@@ -35,6 +37,10 @@ export default function MapListingCard({
 
   if (!listing) return null;
 
+  const listingMapContainerStyle = mapMode
+    ? styles.listingMapModeContainer
+    : styles.listingListModeContainer;
+
   const listingTransactionPillColorStyle = (
     listing.exchangeType === ExchangeType.BUYING_CRYPTO
       ? styles.listingBuyPillColors
@@ -42,7 +48,7 @@ export default function MapListingCard({
   );
 
   return (
-    <View style={styles.listingContainer}>
+    <View style={listingMapContainerStyle}>
       <View style={styles.listingHeader}>
         <View style={styles.rowContainer}>
           {/* AUTHOR PILL */}
@@ -84,12 +90,14 @@ export default function MapListingCard({
           </View>
         </View>
         {/* CLOSE BUTTON */}
-        <Pressable
-          style={styles.listingCloseButton}
-          onPress={onClose}
-        >
-          <X size={20} />
-        </Pressable>
+        {mapMode && (
+          <Pressable
+            style={styles.listingCloseButton}
+            onPress={onClose}
+          >
+            <X size={20} />
+          </Pressable>
+        )}
       </View>
       {/* CONVERSION RATE TEXT */}
       <View style={styles.rowContainer}>
@@ -144,20 +152,25 @@ export default function MapListingCard({
           </Text>
         </View>
       </View>
-      <View style={styles.horizontalRule} />
-      <View style={styles.rowContainer}>
-        <View style={styles.moreDetailsButton}>
-          <Text style={styles.moreDetailsButtonText}>
-            More Details
-          </Text>
-        </View>
-        <View style={[styles.listingActionButton, { marginRight: 6 }]}>
-          <Bookmark size={28} color="#666666" />
-        </View>
-        <View style={styles.listingActionButton}>
-          <ChatCircleText size={28} color="#666666" />
-        </View>
-      </View>
+      {/* only display extra options when in map mode */}
+      {mapMode && (
+        <>
+          <View style={styles.horizontalRule} />
+          <View style={styles.rowContainer}>
+            <View style={styles.moreDetailsButton}>
+              <Text style={styles.moreDetailsButtonText}>
+                More Details
+              </Text>
+            </View>
+            <View style={[styles.listingActionButton, { marginRight: 6 }]}>
+              <Bookmark size={28} color="#666666" />
+            </View>
+            <View style={styles.listingActionButton}>
+              <ChatCircleText size={28} color="#666666" />
+            </View>
+          </View>
+        </>
+      )}
     </View>
   );
 }
@@ -174,11 +187,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#EEEEEE',
     marginVertical: 8,
   },
-  listingContainer: {
+  listingMapModeContainer: {
     alignItems: 'flex-start',
     backgroundColor: '#FFFFFFE4',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
+    padding: 12,
+  },
+  listingListModeContainer: {
+    alignItems: 'flex-start',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
     padding: 12,
   },
   listingHeader: {
